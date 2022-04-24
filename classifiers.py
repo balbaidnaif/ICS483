@@ -1,4 +1,6 @@
 import cv2
+
+
 def custom_cascade():
     (width, height) = (130, 100)
 
@@ -16,7 +18,7 @@ def custom_cascade():
     while True:
         (_, im) = webcam.read()
         gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
-        faces = face_cascade.detectMultiScale(gray, 1.3, 4)
+        faces = face_cascade.detectMultiScale(gray, 1.1, 3)
         print(faces)
         for (x, y, w, h) in faces:
             cv2.rectangle(im, (x, y), (x + w, y + h), (255, 0, 0), 2)
@@ -29,16 +31,17 @@ def custom_cascade():
         if key == 27:
             break
 
+
 def haar_cascade():
     (width, height) = (130, 100)
 
 # '0' is used for my webcam,
 # if you've any other camera
 #  attached use '1' like this
-# face_cascade = cv2.CascadeClassifier(
-#     cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
     face_cascade = cv2.CascadeClassifier(
-        r"C:\Users\NaifBalbaid\Downloads\face-detection-data-master\face-detection-data-master\Training-Data\classifier\cascade.xml")
+        cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+    # face_cascade = cv2.CascadeClassifier(
+    #     r"C:\Users\NaifBalbaid\Downloads\face-detection-data-master\face-detection-data-master\Training-Data\classifier\cascade.xml")
     webcam = cv2.VideoCapture(0)
 
     # The program loops until it has 30 images of the face.
@@ -58,3 +61,6 @@ def haar_cascade():
         key = cv2.waitKey(10)
         if key == 27:
             break
+
+
+custom_cascade()
